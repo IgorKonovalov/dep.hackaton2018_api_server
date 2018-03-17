@@ -1,0 +1,20 @@
+{
+  "name": "Epam_Hackaton_Api_Server",
+  "version": "1.0.0",
+  "description": "Api server for epam hackaton 17-18 feb 2018",
+  "main": "server.js",
+  "author": "Igor Konovalov + friends",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "mongodb": "^3.0.4",
+    "nodemon": "^1.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.0"
+  }
+}
