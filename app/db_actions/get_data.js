@@ -1,14 +1,12 @@
 module.exports = function(db, roomId) {
-  return new Promise((resolve, reject) => 
+  return new Promise((resolve, reject) =>
     db.collection('rooms')
-      .find({ roomId })
-      .toArray((err, rooms) => {
-        console.log(db.collection('rooms'))
-        console.log('I get ', rooms, 'in response', roomId)
+      .find({ roomId: String(roomId) })
+      .toArray((err, roomData) => {
         if (err) {
           reject({ error: 'An error has occured while getting rooms' });
         } else {
-          resolve(rooms);
+          resolve(roomData);
         }
       })
     )
