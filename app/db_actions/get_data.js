@@ -6,6 +6,10 @@ module.exports = function(db, roomId) {
         if (err) {
           reject({ error: 'An error has occured while getting rooms' });
         } else {
+          if (roomData.length === 0) {
+            reject({ error: 'No room found' });
+            return;
+          }
           resolve(roomData[0]);
         }
       })
