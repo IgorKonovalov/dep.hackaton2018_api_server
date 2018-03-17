@@ -4,10 +4,11 @@ module.exports = function(app, db) {
 	// Add room
 	app.post('/rooms', (req, res) => {
 		const note = {
-			text: req.body.body,
-			title: req.body.title,
-			roomId: req.body.roomId
-		};
+      description: req.body.description, 
+      title: req.body.title, 
+      roomId: req.body.roomId,
+      conditions: JSON.parse(req.body.conditions)
+    };
 
 		db.collection('rooms').insert(note, (err, result) => {
 			if (err) {
