@@ -17,6 +17,7 @@ module.exports = function(app, db) {
         }
       });
   });
+  
   // Get users from a room
   app.get('/users/:room', (req, res) => {
     const roomId = req.params.room

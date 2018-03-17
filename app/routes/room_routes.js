@@ -1,4 +1,4 @@
-const getRoomData = require('../db_actions/get_data');
+const getRoomData = require('../db_actions/get_room_data');
 
 module.exports = function(app, db) {
 	// Add room
