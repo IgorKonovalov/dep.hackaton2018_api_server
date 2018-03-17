@@ -7,5 +7,5 @@ module.exports = function(app, db) {
   roomRoutes(app, db);
   userRoutes(app, db);
   telegramBotRoutes(app, db);
-  controllerRoutes(app);
+  controllerRoutes(app, db);
 };

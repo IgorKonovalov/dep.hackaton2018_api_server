@@ -1,7 +1,7 @@
 const getRoomData = require('../db_actions/get_data');
 
 module.exports = function(io, db) {
-	console.log('[socket io] server initialized');
+	console.log('[socket io] a server initialized');
 	io.on('connection', socket => {
 		console.log('[socket.io] a client connected');
 
@@ -14,7 +14,7 @@ module.exports = function(io, db) {
 		});
 
 		socket.on('disconnect', () => {
-			console.log('[socket.io] user disconnected');
+			console.log('[socket.io] a client disconnected');
 		});
 	});
 };
