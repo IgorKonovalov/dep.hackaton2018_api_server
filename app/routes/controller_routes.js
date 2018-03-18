@@ -49,9 +49,11 @@ module.exports = function(app, db) {
 		// handle extreme conditions	
 		if (extremeConditions) {
 			// send conditions + value to bot if something is wrong
-			axios.post('http://10.66.168.97:52811/extreme', {
+			await axios.post('http://10.66.168.97:52811/extreme', {
 				data: extremeConditions
-			}) 
+			}).then(() => {
+				console.log('sent!')
+			}).catch(error => console.log('error while sending to bot', error))
 		}
 
 		// insert data to DB

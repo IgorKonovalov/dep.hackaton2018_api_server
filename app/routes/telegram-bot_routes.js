@@ -13,4 +13,8 @@ module.exports = function(app, db) {
 
     res.send(conditions);
   });
+
+  // get data from bot to change conditions
+  // send actions to controller
+  // save action to DB
 };
