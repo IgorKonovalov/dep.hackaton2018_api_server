@@ -9,12 +9,15 @@ module.exports = function(io, db) {
 	io.on('connection', socket => {
 		console.log('[socket.io] a client connected');
 
-		socket.on('initialize', async roomId => {
-			console.log('[socket io] initializing data', roomId);
+		socket.on('initialize', async data => {
+			const { roomId = 743, count = 30, step = 1e5 } = data;
+
+			let lastEntry;
+
+			// console.log('[socket io] initializing data', data);
 
 			const roomData = await getRoomData(db, roomId);
-			const lastFiftyEntries = await getEntries(db, roomId, 50);
-			let lastEntry;
+			const lastFiftyEntries = await getEntries(db, roomId, count);
 
 			socket.emit('room_initial_data', roomData);
 			socket.emit('room_initial_entries', lastFiftyEntries);
@@ -22,7 +25,7 @@ module.exports = function(io, db) {
 			pollingInterval = setInterval(async () => {
 				lastEntry = await getSingleEntry(db, roomId);
 				socket.emit('room_last_entry', lastEntry);
-			}, 1e4);
+			}, step);
 		});
 
 		socket.on('disconnect', () => {
