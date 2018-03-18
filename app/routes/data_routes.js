@@ -18,7 +18,7 @@ module.exports = function(app, db) {
   app.get('/controller/:room/last', async (req, res) => {
     // get last entry from DB
     const roomId = req.params.room;
-		const data = req.body;    
+		const data = req.body;
     try {
       const roomData = await getSingleEntry(db, roomId)
 			res.send(roomData);

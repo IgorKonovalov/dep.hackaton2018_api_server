@@ -5,7 +5,7 @@ module.exports = function(db, roomId, amount) {
 			// String here
 			.find({ roomId: String(roomId) })
 			.sort({ _id: -1 })
-			.limit(amount)
+			.limit(Number(amount))
 			.toArray((err, results) => {
 				if (err) {
 					reject({

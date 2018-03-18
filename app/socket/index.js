@@ -18,7 +18,7 @@ module.exports = function(io, db) {
 
 			const roomData = await getRoomData(db, roomId);
 			const lastFiftyEntries = await getEntries(db, roomId, count);
-
+			
 			socket.emit('room_initial_data', roomData);
 			socket.emit('room_initial_entries', lastFiftyEntries);
 

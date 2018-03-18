@@ -34,6 +34,5 @@ MongoClient.connect(db.url, (err, MongoClient) => {
 	const db = MongoClient.db('hackaton_climate_db');
 
 	setUpRoutes(app, db);
-
 	setUpSocket(io, db);
 });

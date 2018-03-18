@@ -1,5 +1,6 @@
 const axios = require('axios');
 const getRoomData = require('../db_actions/get_room_data');
+const constants = require('../const');
 
 const checkIfExtreme = (data, conditions) => {
 	let result;
@@ -31,13 +32,14 @@ const checkIfExtreme = (data, conditions) => {
 module.exports = function(app, db) {
 	let roomData;
 	let counter = 0;
+
 	app.post('/controller', async (req, res) => {
 		const data = {
 			...req.body,
 			time: Date.now()
 		};
 	
-		console.log('data came from controller', data)
+		// console.log('data came from controller', data)
 
 		if (counter === 0) {
 			roomData = await getRoomData(db, data.roomId);
@@ -45,11 +47,11 @@ module.exports = function(app, db) {
 		}
 
 		const extremeConditions = checkIfExtreme(data, roomData.conditions);
-		
+
 		// handle extreme conditions	
 		if (extremeConditions) {
 			// send conditions + value to bot if something is wrong
-			await axios.post('http://10.66.168.97:52811/extreme', {
+			await axios.post(`${constants.ipBot}extreme`, {
 				data: extremeConditions
 			}).then(() => {
 				console.log('sent!')
