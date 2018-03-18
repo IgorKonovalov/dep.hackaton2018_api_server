@@ -2,7 +2,7 @@ const getRoomData = require('../db_actions/get_room_data');
 const getEntries = require('../db_actions/get_entries');
 const getSingleEntry = require('../db_actions/get_single_entry');
 
-module.exports = function(io, db) {
+module.exports = function(io, db, app) {
 	console.log('[socket io] a server initialized');
 	let pollingInterval;
 
@@ -14,7 +14,7 @@ module.exports = function(io, db) {
 
 			let lastEntry;
 
-			// console.log('[socket io] initializing data', data);
+			console.log('[socket io] initializing data', data);
 
 			const roomData = await getRoomData(db, roomId);
 			const lastFiftyEntries = await getEntries(db, roomId, count);
@@ -28,6 +28,14 @@ module.exports = function(io, db) {
 			}, step);
 		});
 
+		app.post('/event/:room', (req, res) => {
+			socket.emit('room_event', {
+				event: req.body.event,
+				time: Date.now()
+			})
+			res.send('ok')
+		});
+	
 		socket.on('disconnect', () => {
 			clearInterval(pollingInterval);
 			console.log('[socket.io] a client disconnected');

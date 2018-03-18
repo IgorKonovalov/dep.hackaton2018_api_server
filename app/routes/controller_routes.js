@@ -39,7 +39,7 @@ module.exports = function(app, db) {
 			time: Date.now()
 		};
 	
-		// console.log('data came from controller', data)
+		console.log('data came from controller', data)
 
 		if (counter === 0) {
 			roomData = await getRoomData(db, data.roomId);

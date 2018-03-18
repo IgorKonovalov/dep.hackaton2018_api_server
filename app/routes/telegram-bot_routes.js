@@ -22,7 +22,7 @@ module.exports = function(app, db) {
     const roomId = req.params.room
     console.log('get request', req.body.action)
 
-    await axios.post(constants.ipController, {
+    await axios.post(`${constants.ipController}api/controller`, {
       action: req.body.action
     }).then(() => {
       console.log('posted data to controller')
